@@ -1,0 +1,56 @@
+[ex1-25] Создание свойства страницы: управление цветом шапки левого меню.
+Решение
+Вебинар 27.12.2017 - экзамен №1 - отложенные     функции
+              
+Создать свойство - Управление     структурой > Новый тип свойства
+     
+Использовать отложенные функции     - ShowProperty("color_menu_left");?> для установки     класса <div class="title-block...> 
+в шаблоне     компонента левого меню.
+     
+В настройках модулей добавляю для     всех страниц новое свойство, например     "color_menu_left", 
+а в шаблоне меню вызываю     данное свойство и подставляю нужному     блоку в виде класса.
+Для всего сайта - правим свойства     корневого раздела
+Для конкретной страницы - правим     свойства страницы
+
+1) .section.php
+<?
+$sSectionName = "Главная";
+$arDirProperties = array(
+$arDirProperties = Array(
+   "description" => "Мебельная компания осуществляет производство мебели на высококлассном оборудовании с применением минимальной доли ручного труда, что позволяет обеспечить высокое качество нашей продукции.",
+   "keywords" => "мягкая мебель, офисная мебель, мебель для кухни, детская мебель",
+   "robots" => "index, follow"
+   "color_menu_left" => "red",
+   "ROBOTS" => "index, follow"
+);
+?>
+
+2)company/history.php
+
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetPageProperty("color_menu_left", "green");
+$APPLICATION->SetTitle("История");
+
+3)local/templates/exam1/styles.css
+
+.nav .menu .color-green {
+    color: #00ff43;
+}
+
+.side-block .red {
+    background: linear-gradient(#fda3a3, #ff0000);
+}
+
+.side-block .green {
+    background: linear-gradient(#e2ffe7, #00ff43);
+} 
+
+4)local/templates/exam1/components/bitrix/menu/left/template.php
+
+<div class="side-block side-menu">
+<? //<Цвет шапки левого меню> ?>
+<div class="title-block <? $APPLICATION->ShowProperty("color_menu_left"); ?>">
+    <?=GetMessage("T_EXAM_MENU_TITLE")?>
+</div>
+
+<div class="menu-block">
