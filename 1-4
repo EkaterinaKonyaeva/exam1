@@ -1,0 +1,54 @@
+2. [ex1-4] Создать шаблон сайта
+
+1)создали в админке
+2)перенесли в папку локал
+3)разделили на хедер(<!-- /afisha box -->)и футер
+
+4)подключили стили
+
+<? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
+    die();
+}
+
+use Bitrix\Main\Page\Asset;
+use Bitrix\Main\Localization\Loc;
+
+Loc::loadMessages(__FILE__);
+
+// Главная или нет?
+$sCurPage = $APPLICATION->GetCurPage(false);
+if ($sCurPage == "/") {
+    $bIsMain = true;
+}
+
+// Проверка времени
+$iHours = (int)date("H");
+if ($iHours >= 9 && $iHours <= 18) {
+    $bIsWorkTime = true;
+}
+
+?><!DOCTYPE html>
+<html lang="<?= LANGUAGE_ID; ?>">
+<head>
+    <title><? $APPLICATION->ShowTitle() ?></title>
+    <? $APPLICATION->ShowHead(); ?>
+    <?php
+    // CSS
+    Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/reset.css");
+    Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/owl.carousel.css");
+
+    // JS
+    Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/jquery.min.js");
+    Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/owl.carousel.min.js");
+    Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/scripts.js");
+
+    // META
+    Asset::getInstance()->addString('<meta http-equiv="X-UA-Compatible" content="IE=edge">');
+    Asset::getInstance()->addString('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+    ?>
+    <link rel="icon" type="image/vnd.microsoft.icon" href="<?= SITE_TEMPLATE_PATH ?>/img/favicon.ico">
+    <link rel="shortcut icon" href="<?= SITE_TEMPLATE_PATH ?>/img/favicon.ico">
+</head>
+
+5) пути к картинкам
+<img src="<?= SITE_TEMPLATE_PATH ?>/img/new03.jpg" alt="">
