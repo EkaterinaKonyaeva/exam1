@@ -45,3 +45,10 @@ if (!empty($arResult["FILE"]) && strlen(trim(file_get_contents($arResult["FILE"]
         false
     ); ?>
     <!-- /side anonse -->
+
+
+company/sect_useful.php
+Надежный поставщик на все времена. 
+
+sect_useful.php
+Лучший выбор мебели в нашей компании!
