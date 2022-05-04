@@ -52,3 +52,30 @@ if ($iHours >= 9 && $iHours <= 18) {
 
 5) пути к картинкам
 <img src="<?= SITE_TEMPLATE_PATH ?>/img/new03.jpg" alt="">
+
+6) футер 
+
+<? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
+    die();
+}
+
+use Bitrix\Main\Localization\Loc;
+?>
+</div>
+</div>
+<!-- /content -->
+
+<?
+  $APPLICATION->IncludeFile(
+  SITE_DIR . "include/phone.php",
+  Array(),
+  Array("MODE" => "html")
+  );
+?>
+                  
+
+bx.exam1/local/templates/exam1/lang/ru/footer.php
+<?
+$MESS["FOOTER_CONTACTS_INFORMATION"] = "Контактная информация";
+
+<div class="title-block"><?= Loc::getMessage("FOOTER_CONTACTS_INFORMATION"); ?></div>
