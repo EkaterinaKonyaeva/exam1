@@ -59,6 +59,7 @@ if ($iHours >= 9 && $iHours <= 18) {
     die();
 }
 
+
 use Bitrix\Main\Localization\Loc;
 ?>
 </div>
