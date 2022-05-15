@@ -9,3 +9,25 @@
 На экзаменационном         сервере, в ядре 15.5.1 проблемы нет.         
          
 В 18.5.180 проблема есть.         
+local/templates/exam1/components/bitrix/news.list/slider/template.php
+
+<div class="photo-block">
+     <? if ($arItem["PREVIEW_PICTURE"]): ?>
+           <?php
+           $arImageFile = CFile::ResizeImageGet(
+           $arItem["PREVIEW_PICTURE"]["ID"],
+           ['width' => 39, 'height' => 39],
+           BX_RESIZE_IMAGE_EXACT,
+           true
+           );
+           $sPictureSrc = $arImageFile['src'];
+           ?>
+           <? else: ?>
+           <?php
+           // При отсутствии изображения должна выводиться картинка – заглушка,
+           // файл no_photo_left_block.jpg из материалов.
+           $sPictureSrc = SITE_TEMPLATE_PATH . '/img/rew/no_photo_left_block.jpg';
+           ?>
+       <? endif; ?>
+       <img src="<?= $sPictureSrc ?>" alt="">
+   </div>
